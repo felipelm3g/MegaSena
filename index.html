@@ -9,9 +9,52 @@
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
 		<title>Jogo - MegaSena</title>
+		<script>
+			var n = [0, 0, 0, 0, 0, 0];
+			
+			function GetResults() {
+				Montar();
+			}
+			
+			function Montar() {
+				n[0] = Gerar(0,11);
+				n[1] = Gerar(10,21);
+				n[2] = Gerar(20,31);
+				n[3] = Gerar(30,41);
+				n[4] = Gerar(40,51);
+				n[5] = Gerar(50,61);
+			
+				TratarNumeros();
+			}
+			
+			function TratarNumeros() {
+				var i;
+				for (i = 0; i < n.length; i++) {
+					if(n[i] <= 9){
+						n[i] = "0" + n[i];
+					}
+				}
+				Escrevernatela();
+			}
+			
+			function Escrevernatela() {
+				document.getElementById('n1').innerHTML = n[0];
+				document.getElementById('n2').innerHTML = n[1];
+				document.getElementById('n3').innerHTML = n[2];
+				document.getElementById('n4').innerHTML = n[3];
+				document.getElementById('n5').innerHTML = n[4];
+				document.getElementById('n6').innerHTML = n[5];
+			}
+			
+			function Gerar(min,max){
+				min = Math.ceil(min);
+				max = Math.floor(max);
+				return Math.floor(Math.random() * (max - min)) + min;
+			}
+		</script>
 	</head>
-	<body>
-		<h1>Hello, world!</h1>
+	<body onload="GetResults();">
+		<h1><span id="n1"></span> - <span id="n2"></span> - <span id="n3"></span> - <span id="n4"></span> - <span id="n5"></span> - <span id="n6"></span></h1>
 
 		<!-- Optional JavaScript -->
 		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
